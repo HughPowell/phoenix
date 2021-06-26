@@ -1,4 +1,4 @@
-(ns hughpowell.co.uk.phoenix
+(ns phoenix
   (:gen-class))
 
 (defn greet

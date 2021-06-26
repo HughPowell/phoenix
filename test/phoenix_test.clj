@@ -1,6 +1,6 @@
-(ns hughpowell.co.uk.phoenix-test
+(ns phoenix-test
   (:require [clojure.test :refer :all]
-            [hughpowell.co.uk.phoenix :refer :all]))
+            [phoenix :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

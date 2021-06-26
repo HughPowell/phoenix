@@ -1,8 +1,8 @@
 {:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.10.3"}}
  :aliases
- {:run-m {:main-opts ["-m" "hughpowell.co.uk.phoenix"]}
-  :run-x {:ns-default hughpowell.co.uk.phoenix
+ {:run-m {:main-opts ["-m" "phoenix"]}
+  :run-x {:ns-default phoenix
           :exec-fn greet
           :exec-args {:name "Clojure"}}
   :test {:extra-paths ["test"]
@@ -16,5 +16,5 @@
             :exec-fn hf.depstar/uberjar
             :exec-args {:aot true
                         :jar "phoenix.jar"
-                        :main-class "hughpowell.co.uk.phoenix"
+                        :main-class "phoenix"
                         :sync-pom true}}}}
