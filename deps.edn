@@ -1,5 +1,8 @@
 {:paths ["src" "resources"]
- :deps  {org.clojure/clojure {:mvn/version "1.10.3"}}
+ :deps  {org.clojure/clojure   {:mvn/version "1.10.3"}
+         aero/aero             {:mvn/version "1.1.6"}
+         integrant/integrant   {:mvn/version "0.8.0"}
+         meta-merge/meta-merge {:mvn/version "1.0.0"}}
  :aliases
         {:run-m     {:main-opts ["-m" "phoenix"]}
          :run-x     {:ns-default phoenix
@@ -8,11 +11,13 @@
          :test      {:extra-paths ["test"]
                      :extra-deps  {org.clojure/test.check {:mvn/version "1.1.0"}
                                    lambdaisland/kaocha    {:mvn/version "1.0.861"}}}
+         :dev       {:extra-paths ["dev"]
+                     :extra-deps  {integrant/repl {:mvn/version "0.3.2"}}}
          :linter    {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}
          :formatter {:extra-deps {cljfmt/cljfmt {:mvn/version "0.8.0"}}}
          :outdated  {:extra-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}
                                   org.slf4j/slf4j-nop     {:mvn/version "1.7.31"}}}
-         :uberjar   {:replace-deps {com.github.seancorfield/depstar {:mvn/version "2.0.216"}}
+         :uberjar   {:replace-deps {com.github.seancorfield/depstar {:mvn/version "2.1.245"}}
                      :exec-fn      hf.depstar/uberjar
                      :exec-args    {:aot        true
                                     :jar        "phoenix.jar"

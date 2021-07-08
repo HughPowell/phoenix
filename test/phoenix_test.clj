@@ -5,4 +5,4 @@
 
 (deftest a-test
   (testing "FIXME, I fail."
-    (is (= "Hello, World!" (string/trim (with-out-str (phoenix/greet {})))))))
+    (is (= "Hello, Phoenix!" (string/trim (with-out-str (phoenix/stop-system (phoenix/start-system (phoenix/configure)))))))))
