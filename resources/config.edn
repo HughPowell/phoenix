@@ -1,1 +1,4 @@
-{:phoenix/greet {:data {:name "Phoenix"}}}
+{:phoenix/greet      {:data {:name "Phoenix"}}
+ :phoenix/web-server {:port  #long #or [#env PHOENIX_WEB_SERVER_PORT 3000]
+                      :join? false
+                      :name  #ig/ref :phoenix/greet}}
