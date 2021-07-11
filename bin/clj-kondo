@@ -1,3 +1,5 @@
 #!/bin/sh
 
-clojure -M:dev:test:linter -m clj-kondo.main --lint src test
+clojure -M:dev:test:linter -m clj-kondo.main --lint src test \
+   --config '{:lint-as {clojure.test.check.clojure-test/defspec clojure.test/deftest
+                        clojure.test.check.properties/for-all clojure.core/for}}'

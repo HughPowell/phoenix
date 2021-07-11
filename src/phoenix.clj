@@ -3,15 +3,26 @@
             [aero.core :as aero]
             [integrant.core :as ig]
             [meta-merge.core :as meta-merge]
-            [ring.adapter.jetty :as jetty])
+            [reitit.ring :as ring]
+            [ring.adapter.jetty :as jetty]
+            [ring.util.response :as response])
   (:gen-class))
 
-(defn greet [{:keys [name]}]
-  {:status 200
-   :body   (str "Hello, " (or name "World") "!")})
+(defn- greet [request]
+  (let [name (get-in request [:path-params :name])]
+    (-> (str "Hello, " (or name "World") "!")
+        response/response
+        (response/content-type "text/plain"))))
 
-(defn handler [opts]
-  (fn [_request] (greet opts)))
+(def router
+  (ring/router
+   [["/" {:name ::root
+          :get  greet}]
+    ["/:name" {:name ::name
+               :get  {:parameters {:path [:map [:name string?]]}
+                      :handler    greet}}]]))
+
+(def ^:private app (ring/ring-handler router (ring/create-default-handler)))
 
 (defmulti run-web-server (fn [_handler {:keys [type] :as _opts}] type))
 
@@ -24,13 +35,10 @@
   (.stop web-server))
 
 (defmethod ig/init-key ::web-server [_ opts]
-  (assoc opts :web-server (run-web-server (handler opts) opts)))
+  (assoc opts :web-server (run-web-server app opts)))
 
 (defmethod ig/halt-key! ::web-server [_ opts]
   (stop-web-server opts))
-
-(defmethod ig/init-key ::greet [_ {:keys [data]}]
-  (:name data))
 
 (defmethod aero/reader 'ig/ref
   [_opts _tag value]

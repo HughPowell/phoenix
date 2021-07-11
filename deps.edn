@@ -1,17 +1,21 @@
 {:paths ["src" "resources"]
- :deps  {org.clojure/clojure     {:mvn/version "1.10.3"}
-         aero/aero               {:mvn/version "1.1.6"}
-         integrant/integrant     {:mvn/version "0.8.0"}
-         meta-merge/meta-merge   {:mvn/version "1.0.0"}
-         ring/ring-jetty-adapter {:mvn/version "1.9.3"}}
+ :deps  {org.clojure/clojure       {:mvn/version "1.10.3"}
+         aero/aero                 {:mvn/version "1.1.6"}
+         integrant/integrant       {:mvn/version "0.8.0"}
+         meta-merge/meta-merge     {:mvn/version "1.0.0"}
+         metosin/reitit-middleware {:mvn/version "0.5.13"}
+         metosin/reitit-ring       {:mvn/version "0.5.13"}
+         ring/ring-jetty-adapter   {:mvn/version "1.9.3"}}
  :aliases
         {:run-m     {:main-opts ["-m" "phoenix"]}
          :run-x     {:ns-default phoenix
                      :exec-fn    greet
                      :exec-args  {:name "Clojure"}}
          :test      {:extra-paths ["test"]
-                     :extra-deps  {org.clojure/test.check {:mvn/version "1.1.0"}
-                                   lambdaisland/kaocha    {:mvn/version "1.0.861"}}}
+                     :extra-deps  {org.clojure/test.check     {:mvn/version "1.1.0"}
+                                   com.gfredericks/test.chuck {:mvn/version "0.2.11"}
+                                   lambdaisland/kaocha        {:mvn/version "1.0.861"}
+                                   metosin/malli              {:mvn/version "0.5.1"}}}
          :dev       {:extra-paths ["dev"]
                      :extra-deps  {integrant/repl {:mvn/version "0.3.2"}}}
          :linter    {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}}
