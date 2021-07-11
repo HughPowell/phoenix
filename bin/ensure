@@ -3,7 +3,11 @@
 set -e
 
 cd "$( dirname "${BASH_SOURCE[0]}" )/.."
-./bin/kaocha
-./bin/clj-kondo
-./bin/cljfmt
+echo "Chceking for library updates ..."
 ./bin/antq
+echo "Checking code formating ..."
+./bin/cljfmt
+echo "Linting ..."
+./bin/clj-kondo
+echo "Running tests ..."
+./bin/kaocha
